@@ -110,7 +110,7 @@
     button.disabled = true;
     button.innerHTML = "Loading..."
     console.log("Loading...")
-    fetch("https://webbraingenerate.eyuphanmandiraci.com/generate?prompt="+prompt, {
+    fetch("http://185.250.241.71:3000/generate?prompt="+prompt, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
