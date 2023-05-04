@@ -71,12 +71,20 @@
       flex-direction: column;
       align-items: center;
     }
+    .github{
+      margin-bottom: 30px;
+    }
   </style>
 </head>
 <body>
 <div class="container">
   <h1>WebBrain - AI Website Builder</h1>
   <div class="resultbox">
+    <div class="github">
+      <a class="github-button" href="https://github.com/EyuphanMandiraci/WebBrain/subscription" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-eye" data-size="large" data-show-count="true" aria-label="Watch EyuphanMandiraci/WebBrain on GitHub">Watch</a>
+      <a class="github-button" href="https://github.com/EyuphanMandiraci/WebBrain" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star EyuphanMandiraci/WebBrain on GitHub">Star</a>
+      <a class="github-button" href="https://github.com/EyuphanMandiraci/WebBrain/fork" data-color-scheme="no-preference: light; light: light; dark: light;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork EyuphanMandiraci/WebBrain on GitHub">Fork</a>
+    </div>
     <label for="prompt">Prompt:</label>
     <input type="text" id="prompt" name="prompt">
     <button type="button" onclick="generate()" id="generator">Generate Website</button>
@@ -118,6 +126,8 @@
       });
   }
 </script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 </body>
 </html>
