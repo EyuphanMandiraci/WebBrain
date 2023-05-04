@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+  <title>WebBrain - AI Website Builder</title>
+  <style>
+    body {
+      background-color: #1c1c1c;
+      color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      margin: 50px auto;
+      padding: 20px;
+      max-width: 800px;
+      background-color: #2b2b2b;
+      box-shadow: 0px 0px 10px #000;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #f2f2f2;
+      color: #1c1c1c;
+      resize: none;
+    }
+
+    button[type="button"] {
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      background-color: #4CAF50;
+      color: #f2f2f2;
+      font-size: 20px;
+      cursor: pointer;
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+
+    button[type="button"]:hover {
+      background-color: #3e8e41;
+    }
+
+    .result {
+      margin-top: 50px;
+      border: 2px solid #f2f2f2;
+      padding: 20px;
+      min-height: 300px;
+    }
+    .resultbox{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>WebBrain - AI Website Builder</h1>
+  <div class="resultbox">
+    <label for="prompt">Prompt:</label>
+    <input type="text" id="prompt" name="prompt">
+    <button type="button" onclick="generate()" id="generator">Generate Website</button>
+  </div>
+  <div class="resultbox">
+    <label for="html">HTML Code:</label>
+    <textarea id="html" name="html" rows="25" readonly></textarea>
+    <label for="css">CSS Code:</label>
+    <textarea id="css" name="css" rows="25" readonly></textarea>
+  </div>
+  <div class="result">
+    <iframe id="result" src="about:blank" frameborder="0" width="100%" height="95%"></iframe>
+  </div>
+</div>
+
+<script>
+  function generate(){
+    const prompt = document.getElementById("prompt").value;
+    const html = document.getElementById("html");
+    const css = document.getElementById("css");
+    const result = document.getElementById("result");
+    const button = document.getElementById("generator");
+    button.disabled = true;
+    button.innerHTML = "Loading..."
+    console.log("Loading...")
+    fetch("generate?prompt="+prompt, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data)
+        html.value = data.htmlCode;
+        css.value = data.cssCode
+        result.srcdoc = data.htmlCode + "<style>" + data.cssCode + "</style>";
+        button.disabled = false;
+        button.innerHTML = "Generate Website"
+      });
+  }
+</script>
+
+</body>
+</html>
